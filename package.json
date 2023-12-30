@@ -10,6 +10,7 @@
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
     "dev": "vite",
     "build": "tsc && vite build",
     "postbuild": "node ./scripts/postbuild.js",
