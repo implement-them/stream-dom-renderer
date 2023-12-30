@@ -17,12 +17,12 @@ describe('DOM Manager Unit Test', () => {
     expect(document.body.firstChild).toEqual(domManager.currentNode);
   });
 
-  test.each(appendTextCases)('[DOM Manager]-appendText $input', async ({ input, expect: exp }) => {
+  test.each(appendTextCases)('[DOM Manager]-appendText $input', async ({ input, innerHTML, textContent }) => {
     const domManager = new DomManager({
       parentNode: document.body,
     });
     domManager.appendText(input);
-    expect(domManager.currentNode.innerHTML).toBe(exp);
-    expect(document.body.innerHTML).toBe(`<div>${exp}</div>`);
+    expect(domManager.currentNode.innerHTML).toBe(innerHTML);
+    expect(domManager.currentNode.textContent).toBe(textContent);
   });
 });
