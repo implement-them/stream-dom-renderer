@@ -1,33 +1,40 @@
-export const appendTextCases: Array<{ input: string; expect: string }> = [
+export const appendTextCases: Array<{ input: string; innerHTML: string, textContent: string }> = [
   // 1 - normal string
   {
     input: 'Hello World',
-    expect: 'Hello World',
+    innerHTML: 'Hello World',
+    textContent: 'Hello World',
   },
   // 2 - special characters
   {
     input: '\nHello World',
-    expect: '\nHello World',
+    innerHTML: '\nHello World',
+    textContent: '\nHello World',
   },
   {
     input: '<&lt;>&gt;',
-    expect: '&lt;&lt;&gt;&gt;',
+    innerHTML: '&lt;&lt;&gt;&gt;',
+    textContent: '<<>>',
   },
   {
     input: '  ',
-    expect: '  ',
+    innerHTML: '  ',
+    textContent: '  ',
   },
   {
     input: '&nbsp;&nbsp;',
-    expect: '&nbsp;&nbsp;',
+    innerHTML: '&nbsp;&nbsp;',
+    textContent: '  ', // '%C2%A0%C2%A0'
   },
   {
     input: '"&quot;',
-    expect: '""',
+    innerHTML: '""',
+    textContent: '""',
   },
   {
     input: '©&copy;',
-    expect: '©©',
+    innerHTML: '©©',
+    textContent: '©©',
   },
 ];
 
