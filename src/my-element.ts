@@ -22,7 +22,11 @@ export class MyElement extends LitElement {
   protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
     console.log('first update get dom', this._dom);
     if (this._dom) {
-      this.streamRenderer = new StreamDomRenderer();
+      this.streamRenderer = new StreamDomRenderer({
+        dom: {
+          parentNode: this._dom,
+        },
+      });
       (window as any).controller = this.streamRenderer;
     }
   }
