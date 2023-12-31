@@ -12,9 +12,14 @@ export const appendTextCases: Array<{ input: string; innerHTML: string, textCont
     textContent: '\nHello World',
   },
   {
-    input: '<&lt;>&gt;',
-    innerHTML: '&lt;&lt;&gt;&gt;',
-    textContent: '<<>>',
+    input: '<>&lt;&gt;',
+    innerHTML: '&lt;&gt;&amp;lt;&amp;gt;',
+    textContent: '<>&lt;&gt;',
+  },
+  {
+    input: '<div></div>',
+    innerHTML: '&lt;div&gt;&lt;/div&gt;',
+    textContent: '<div></div>',
   },
   {
     input: '  ',
@@ -23,18 +28,18 @@ export const appendTextCases: Array<{ input: string; innerHTML: string, textCont
   },
   {
     input: '&nbsp;&nbsp;',
-    innerHTML: '&nbsp;&nbsp;',
-    textContent: '  ', // '%C2%A0%C2%A0'
+    innerHTML: '&amp;nbsp;&amp;nbsp;',
+    textContent: '&nbsp;&nbsp;',
   },
   {
     input: '"&quot;',
-    innerHTML: '""',
-    textContent: '""',
+    innerHTML: '"&amp;quot;',
+    textContent: '"&quot;',
   },
   {
     input: '©&copy;',
-    innerHTML: '©©',
-    textContent: '©©',
+    innerHTML: '©&amp;copy;',
+    textContent: '©&copy;',
   },
 ];
 

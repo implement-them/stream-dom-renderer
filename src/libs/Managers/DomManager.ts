@@ -15,6 +15,10 @@ export class DomManager {
    */
   private _currentNode!: HTMLElement;
 
+  public get rootNode() {
+    return this._rootNode;
+  }
+
   public get currentNode() {
     return this._currentNode;
   }
@@ -51,9 +55,9 @@ export class DomManager {
     return this;
   }
 
-  public appendAttribultes() {
-    return this;
-  }
+  // public appendAttribultes() {
+  //   return this;
+  // }
 
   public appendChild(node: HTMLElement) {
     this._currentNode.appendChild(node);
@@ -62,19 +66,33 @@ export class DomManager {
 
   /**
    * @name appendText
-   * @param text 
+   * @param text append to dom width textContent, which is more securiry than innerHTML
    * @returns 
    */
   public appendText(text: string) {
-    this._currentNode.innerHTML += text;
+    this._currentNode.textContent += text;
     return this;
   }
 
+  /**
+   * @name forward move currentNode to "next" node (last child of currentNode)
+   * @returns {this}
+   */
   public forward() {
+    if (this._currentNode.childNodes.length > 0) {
+      this._currentNode = this._currentNode.lastChild as HTMLElement;
+    }
     return this;
   }
 
+  /**
+   * @name backward move currentNode to "previous" node (parent of currentNode)
+   * @returns {this}
+   */
   public backward() {
+    if (this._currentNode !== this._rootNode && this._rootNode.contains(this._currentNode) && this._currentNode.parentElement) {
+      this._currentNode = this._currentNode.parentElement;
+    }
     return this;
   }
 }

@@ -25,4 +25,34 @@ describe('DOM Manager Unit Test', () => {
     expect(domManager.currentNode.innerHTML).toBe(innerHTML);
     expect(domManager.currentNode.textContent).toBe(textContent);
   });
+
+  test('[DOM Manager]-appendChild', () => {
+    const domManager = new DomManager({
+      parentNode: document.body,
+    });
+    expect(domManager.currentNode.innerHTML).toBe('');
+    domManager.appendChild(document.createElement('div'));
+    expect(domManager.currentNode.innerHTML).toBe('<div></div>');
+  })
+
+  test('[DOM Manager]-forward & backward', () => {
+    const domManager = new DomManager({
+      parentNode: document.body,
+    });
+
+    domManager.appendChild(document.createElement('div'))
+      .appendChild(document.createElement('div'))
+      .forward();
+    expect(domManager.currentNode).toBe(domManager.rootNode.lastChild);
+    expect(domManager.currentNode).not.toBe(domManager.rootNode.firstChild);
+
+    domManager.forward();
+    expect(domManager.currentNode).toBe(domManager.rootNode.lastChild);
+
+    domManager.backward();
+    expect(domManager.currentNode).toBe(domManager.rootNode);
+
+    domManager.backward();
+    expect(domManager.currentNode).toBe(domManager.rootNode);
+  });
 });
