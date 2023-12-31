@@ -15,6 +15,9 @@ describe('DOM Command', () => {
       ],
     });
 
+    renderer.execute('dom.sss', {});
+    expect(renderer.domManager.rootNode.innerHTML).toBe('');
+
     await renderer.execute('dom.append_text', { text: 'hehe' });
 
     expect(renderer.domManager.currentNode.textContent).toBe('hehe');
@@ -34,5 +37,19 @@ describe('DOM Command', () => {
     await renderer.execute('dom.append_text', { text: input });
     expect(renderer.domManager.currentNode.innerHTML).toBe(innerHTML);
     expect(renderer.domManager.currentNode.textContent).toBe(textContent);
+  });
+
+  test('[DOM Command]- dom.append_child', () => {
+    const renderer = createStreamRenderer().use({
+      commands: [
+        new DomCommand(),
+      ],
+    });
+    renderer.execute('dom.append_child', { node: document.createElement('div') });
+    expect(renderer.domManager.currentNode.innerHTML).toBe('<div></div>');
+    renderer.execute('dom.append_child', { node: document.createElement('text') });
+    expect(renderer.domManager.currentNode.innerHTML).toBe('<div></div><text></text>');
+
+
   });
 });

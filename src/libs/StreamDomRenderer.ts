@@ -7,7 +7,7 @@ import { IStreamDomRendererPlugin } from './StreamDomRendererPlugin';
 export class StreamDomRenderer {
 
   public streamManager : StreamManager;
-  public domManager    : DomManager;
+  public domManager   : DomManager;
   private _commandManager: CommandManger;
 
   private _plugins: IStreamDomRendererPlugin[] = [];
@@ -15,7 +15,7 @@ export class StreamDomRenderer {
 
   constructor(options?: IStreamDomRendererOptions) {
     this.streamManager = new StreamManager();
-    this.domManager    = new DomManager(options?.dom);
+    this.domManager = new DomManager(options?.dom);
     this._commandManager = new CommandManger(this);
   }
 
