@@ -15,6 +15,7 @@ describe('DOM Manager Unit Test', () => {
 
     expect(document.body.innerHTML).toBe('<div></div>');
     expect(document.body.firstChild).toEqual(domManager.currentNode);
+
   });
 
   test.each(appendTextCases)('[DOM Manager]-appendText $input', async ({ input, innerHTML, textContent }) => {
@@ -33,6 +34,9 @@ describe('DOM Manager Unit Test', () => {
     expect(domManager.currentNode.innerHTML).toBe('');
     domManager.appendChild(document.createElement('div'));
     expect(domManager.currentNode.innerHTML).toBe('<div></div>');
+
+    domManager.appendChild(document.createElement('text'));
+    expect(domManager.currentNode.innerHTML).toBe('<div></div><text></text>');
   })
 
   test('[DOM Manager]-forward & backward', () => {
