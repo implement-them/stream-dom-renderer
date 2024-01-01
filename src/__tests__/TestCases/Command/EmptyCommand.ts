@@ -1,4 +1,4 @@
-import { AbstractCommand, ICommandPayload } from '../../libs/Commands/Abstract';
+import { AbstractCommand, ICommandPayload } from '../../../libs/Commands/Abstract';
 
 export class EmptyCommand extends AbstractCommand {
   public exe = false;
