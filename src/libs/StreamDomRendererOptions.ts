@@ -1,4 +1,4 @@
-import { AbstractStreamParser } from './StreamParser/AbstractParser';
+import { DomManager } from './Managers/DomManager';
 
 export interface IStreamDomRendererOptions {
   /**
@@ -7,5 +7,7 @@ export interface IStreamDomRendererOptions {
   dom?: {
     /** HTML Element to append to */
     parentNode?: HTMLElement;
+    /** replace default dom manager to render element */
+    renderer?: typeof DomManager;
   };
 }
