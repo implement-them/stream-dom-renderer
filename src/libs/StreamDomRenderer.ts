@@ -7,17 +7,16 @@ import { ParserManager } from './Managers/ParserManager';
 
 export class StreamDomRenderer {
 
-  public streamManager : StreamManager;
-  public domManager   : DomManager;
-  private _commandManager: CommandManger;
-  private _parserManager: ParserManager;
+  public streamManager    : StreamManager;
+  public domManager       : DomManager;
+  private _commandManager : CommandManger;
+  private _parserManager  : ParserManager;
 
   private _plugins: IStreamDomRendererPlugin[] = [];
 
-
   constructor(options?: IStreamDomRendererOptions) {
     this.streamManager = new StreamManager();
-    this.domManager = new DomManager(options?.dom);
+    this.domManager = options?.dom?.renderer ? new options.dom.renderer(options?.dom) : new DomManager(options?.dom);
     this._commandManager = new CommandManger(this);
     this._parserManager = new ParserManager(this);
   }
@@ -53,7 +52,6 @@ export class StreamDomRenderer {
   }
 
   public async execute(command: string, payload?: { [key: string]: any; }) {
-    console.log('excute', command);
     await this._commandManager.execute(command, payload);
     return this;
   }
