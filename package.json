@@ -1,6 +1,6 @@
 {
-  "name": "@liuyingyyx/stream-dom-renderer",
-  "version": "0.0.1-alpha.5",
+  "name": "stream-dom-renderer",
+  "version": "1.0.0",
   "author": "Liuying <liuyingyyx@dingtalk.com>",
   "files": [
     "dist"
@@ -10,6 +10,10 @@
     "url": "https://github.com/implement-them/stream-dom-renderer.git"
   },
   "keywords": ["richtext", "dom", "stream"],
+  "bugs": {
+    "url": "https://github.com/implement-them/stream-dom-renderer/issues"
+  },
+  "license": "MIT",
   "main": "./stream-dom-renderer.umd.cjs",
   "module": "./stream-dom-renderer.js",
   "scripts": {
@@ -19,6 +23,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "postbuild": "node ./scripts/postbuild.js",
+    "publish:alpha": "cd dist && npm publish --tag alpha && cd ..",
+    "publish": "cd dist && npm publish && cd ..",
     "preview": "vite preview"
   },
   "dependencies": {
