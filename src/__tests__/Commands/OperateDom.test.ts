@@ -1,6 +1,6 @@
 import '../init';
 import { describe, test, expect, beforeEach } from 'vitest'
-import { createStreamRenderer } from '../../libs';
+import { createStreamRenderer } from '../utils/createStreamRenderer';
 import { DomCommand } from '../../libs/Commands/DomCommand';
 import { appendTextCases } from '../TestCases/DomManager/appendText';
 

@@ -1,4 +1,4 @@
-import { AbstractCommand } from '../Commands/Abstract';
+import { AbstractCommand } from '../Commands/AbstractCommand';
 import { StreamDomRenderer } from '../StreamDomRenderer';
 
 export class CommandManger {

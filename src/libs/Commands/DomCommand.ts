@@ -1,5 +1,5 @@
 import type { StreamDomRenderer } from '../StreamDomRenderer';
-import { AbstractCommand } from './Abstract';
+import { AbstractCommand } from './AbstractCommand';
 
 export interface IDomCommands {
   'dom.append_child': {

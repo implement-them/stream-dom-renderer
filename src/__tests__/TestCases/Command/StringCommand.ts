@@ -1,4 +1,4 @@
-import { AbstractCommand } from '../../../libs/Commands/Abstract';
+import { AbstractCommand } from '../../../libs/Commands/AbstractCommand';
 
 export class StringCommand extends AbstractCommand {
   str = '';
