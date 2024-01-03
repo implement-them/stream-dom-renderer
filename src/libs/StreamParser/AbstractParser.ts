@@ -1,10 +1,12 @@
 
-export interface IParseResult {
+export interface IParseResult<T extends [string, any] = [string, any]> {
   parsedStream: string;
-  commands: any[];
+  commands: T[];
 }
 
 export abstract class AbstractStreamParser {
 
-  public abstract parse(stream: string): any;
+  public abstract parse(stream: string): IParseResult;
+
+  public abstract domCommandAdapter(...props: any[]): any;
 }
