@@ -38,9 +38,6 @@ export class StreamDomRenderer {
       this.streamManager.appendParsed(result.parsedStream);
     }
 
-    // ! TODO delete them
-    // this._domManager.currentNode.innerHTML += stream;
-    // this.domManager.currentNode.append(stream);
     return this;
   }
 
