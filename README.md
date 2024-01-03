@@ -4,6 +4,8 @@ Read stream input and render them to web page.
 
 ## Quick start:
 
+### operate dom
+
 ````
 import { StreamDomRenderer, IDomCommand } from '@liuyingyyx/stream-dom-renderer';
 
@@ -36,12 +38,15 @@ streamRenderer.executeAll([
 ````
 
 ## Change log:
+- 2024-01-03: support basic dom operators
 
 ## Milestones & TODO list:
 
-- [] execute basic dom operators
-- [] support 'internal' stream input
-- [] support official markdown stream as input (exclude code block)
-- [] support one source code highlighting
-- [] support custom generated rules
+- [x] execute basic dom operators
+- [ ] support dom event
+- [x] support 'internal' stream input
+- [ ] support official markdown stream as input (exclude code block)
+- [ ] support a third party syntax tree rule
+- [ ] support one source code highlighting
+- [ ] support custom generated rules
 
