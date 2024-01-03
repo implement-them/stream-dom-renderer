@@ -1,5 +1,8 @@
 import { DomManager } from './Managers/DomManager';
 
+/**
+ * init configs of StreamDomRenderer
+ */
 export interface IStreamDomRendererOptions {
   /**
    * Options for the DomManager
