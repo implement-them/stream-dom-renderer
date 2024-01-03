@@ -55,4 +55,11 @@ export class StreamDomRenderer {
     await this._commandManager.execute(command, payload);
     return this;
   }
+
+  public async executeAll(commands: Array<[string, any]>) {
+    for (const command of commands) {
+      await this.execute(command[0], command[1]);
+    }
+    return this;
+  }
 }

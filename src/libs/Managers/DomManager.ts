@@ -49,15 +49,47 @@ export class DomManager {
     return this;
   }
 
+  /**
+   * @name clear
+   * @description init dom renderer
+   * @returns {this}
+   */
   public clear() {
     this._parentNode.removeChild(this._rootNode);
     this.init();
     return this;
   }
 
-  // public appendAttribultes() {
-  //   return this;
-  // }
+  /**
+   * @name setAttribultes
+   * @description set attributes to current node, old value will be replaced
+   * @param props [attributeName, attributeValue]
+   * @returns {this}
+   */
+  public setAttribultes(props: Array<[string, string]>) {
+    props.forEach(([key, value]) => {
+      this._currentNode.setAttribute(key, value);
+    });
+    return this;
+  }
+
+  /**
+   *  @name appendAttribultes
+   * @description append attributes to current node, old value will be part of the new value
+   * @param props [attributeName, attributeValue, split]
+   * @returns {this}
+   */
+  public appendAttribultes(props: Array<[string, string, string?]>) {
+    props.forEach(([key, value, split = '']) => {
+      const oldValue = this._currentNode.getAttribute(key);
+      if (typeof oldValue === 'string' && !!oldValue) {
+        this._currentNode.setAttribute(key, `${oldValue}${split}${value}`);
+      } else {
+        this._currentNode.setAttribute(key, value);
+      }
+    });
+    return this;
+  }
 
   public appendChild(node: HTMLElement) {
     this._currentNode.appendChild(node);
