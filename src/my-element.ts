@@ -3,6 +3,7 @@ import { customElement, property, query } from 'lit/decorators.js'
 import { StreamDomRenderer } from './libs/StreamDomRenderer';
 import { DomCommand } from './libs/Commands/DomCommand';
 import { StandardParser } from './libs/StreamParser/StandardParser';
+import { RichTextCommands } from './demo/RichTextCommands';
 
 /**
  * An example element.
@@ -31,9 +32,9 @@ export class MyElement extends LitElement {
       });
       this.streamRenderer.use({
         commands: [new DomCommand()],
-        parsers: [new StandardParser()],
+        // parsers: [new StandardParser()],
       });
-      this.streamRenderer.writeStream('**sss**');
+      this.streamRenderer.executeAll(RichTextCommands);
       (window as any).controller = this.streamRenderer;
     }
   }
