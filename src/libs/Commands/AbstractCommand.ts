@@ -12,6 +12,9 @@ export interface ICommand {
   execute: (command: string, payload?: ICommandPayload) => void;
 }
 
+/**
+ * @description abstract class of command
+ */
 export abstract class AbstractCommand implements ICommand {
   async executeFramework(command: string, payload?: ICommandPayload) {
     await this.execute(command, payload);
