@@ -1,3 +1,5 @@
+import { AbstractStreamParser } from './StreamParser/AbstractParser';
+
 export interface IStreamDomRendererOptions {
   /**
    * Options for the DomManager

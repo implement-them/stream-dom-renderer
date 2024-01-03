@@ -3,12 +3,14 @@ import { StreamManager } from './Managers/StreamManager';
 import { DomManager } from './Managers/DomManager';
 import { CommandManger } from './Managers/CommandManager';
 import { IStreamDomRendererPlugin } from './StreamDomRendererPlugin';
+import { ParserManager } from './Managers/ParserManager';
 
 export class StreamDomRenderer {
 
   public streamManager : StreamManager;
   public domManager   : DomManager;
   private _commandManager: CommandManger;
+  private _parserManager: ParserManager;
 
   private _plugins: IStreamDomRendererPlugin[] = [];
 
@@ -17,6 +19,7 @@ export class StreamDomRenderer {
     this.streamManager = new StreamManager();
     this.domManager = new DomManager(options?.dom);
     this._commandManager = new CommandManger(this);
+    this._parserManager = new ParserManager(this);
   }
 
   public setParentNode(node: HTMLElement) {
@@ -26,11 +29,18 @@ export class StreamDomRenderer {
 
   public writeStream(stream: string) {
     this.streamManager.writeStream(stream);
+    const result = this._parserManager.parse(this.streamManager.parsingStream);
+    if (result) {
+      result.commands.forEach((item) => {
+        const cmd = this._parserManager.domCommandAdapter(item);
+        this.execute(cmd[0], cmd[1]);
+      });
+      this.streamManager.appendParsed(result.parsedStream);
+    }
 
     // ! TODO delete them
     // this._domManager.currentNode.innerHTML += stream;
-    this.domManager.currentNode.append(stream);
-    this.streamManager.appendParsed(stream);
+    // this.domManager.currentNode.append(stream);
     return this;
   }
 
@@ -39,10 +49,14 @@ export class StreamDomRenderer {
     if (plugin.commands && plugin.commands.length) {
       this._commandManager.use(plugin.commands);
     }
+    if (plugin.parsers) {
+      this._parserManager.use(plugin.parsers);
+    }
     return this;
   }
 
   public async execute(command: string, payload?: { [key: string]: any; }) {
+    console.log('excute', command);
     await this._commandManager.execute(command, payload);
     return this;
   }
