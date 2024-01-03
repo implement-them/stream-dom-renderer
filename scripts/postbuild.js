@@ -12,6 +12,10 @@ const list = [
   'author',
   'main',
   'module',
+  'repository',
+  'keywords',
+  'bugs',
+  'license',
   'peerDependencies'
 ];
 
