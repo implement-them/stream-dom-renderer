@@ -9,7 +9,11 @@
     "type": "git",
     "url": "https://github.com/implement-them/stream-dom-renderer.git"
   },
-  "keywords": ["richtext", "dom", "stream"],
+  "keywords": [
+    "richtext",
+    "dom",
+    "stream"
+  ],
   "bugs": {
     "url": "https://github.com/implement-them/stream-dom-renderer/issues"
   },
@@ -20,21 +24,18 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "dev": "vite",
     "build": "tsc && vite build",
     "postbuild": "node ./scripts/postbuild.js",
     "publish:alpha": "cd dist && npm publish --tag alpha && cd ..",
     "publish": "cd dist && npm publish && cd ..",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "lit": "^3.1.0"
+    "start": "vite dev"
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.6",
     "@vitest/browser": "^1.1.0",
     "@vitest/coverage-istanbul": "^1.1.0",
     "jsdom": "^23.0.1",
+    "lit": "^3.1.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^1.1.0",
