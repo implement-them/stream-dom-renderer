@@ -1,9 +1,8 @@
 import { LitElement, PropertyValueMap, css, html } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
-import { StreamDomRenderer } from './libs/StreamDomRenderer';
-import { DomCommand } from './libs/Commands/DomCommand';
-import { StandardParser } from './libs/StreamParser/StandardParser';
-import { RichTextCommands } from './demo/RichTextCommands';
+import { StreamDomRenderer } from '../libs/StreamDomRenderer';
+import { DomCommand } from '../libs/Commands/DomCommand';
+import { RichTextCommands } from '../demo/RichTextCommands';
 
 /**
  * An example element.
@@ -23,7 +22,6 @@ export class MyElement extends LitElement {
   streamRenderer: StreamDomRenderer | null = null;
 
   protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    console.log('first update get dom', this._dom);
     if (this._dom) {
       this.streamRenderer = new StreamDomRenderer({
         dom: {
