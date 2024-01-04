@@ -13,7 +13,7 @@ export default defineConfig({
     rollupOptions: {
     },
   },
-  preview: {
+  server: {
     host: '0.0.0.0',
     port: 3000,
     open: true,
