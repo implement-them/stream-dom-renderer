@@ -2,9 +2,6 @@
   "name": "stream-dom-renderer",
   "version": "1.0.0",
   "author": "Liuying <liuyingyyx@dingtalk.com>",
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/implement-them/stream-dom-renderer.git"
@@ -18,14 +15,21 @@
     "url": "https://github.com/implement-them/stream-dom-renderer/issues"
   },
   "license": "MIT",
-  "main": "./stream-dom-renderer.umd.cjs",
-  "module": "./stream-dom-renderer.js",
+  "main": "./cjs/index.cjs.js",
+  "module": "./es/index.es.js",
+  "unpkg": "./umd/index.umd.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "build": "tsc && vite build",
-    "postbuild": "node ./scripts/postbuild.js",
+    "build": "rm -rf dist && tsc && run-p build:* && node ./scripts/postbuild.js",
+    "build:iife": "export FORMAT=iife && vite build",
+    "build:cjs": "export FORMAT=cjs && vite build",
+    "build:amd": "export FORMAT=amd && vite build",
+    "build:umd": "export FORMAT=umd && vite build",
+    "build:es": "export FORMAT=es && vite build",
+    "build:types": "tsc --noEmit false --declaration --emitDeclarationOnly --outDir dist/types",
     "publish:alpha": "cd dist && npm publish --tag alpha && cd ..",
     "publish": "cd dist && npm publish && cd ..",
     "start": "vite dev"
@@ -36,6 +40,8 @@
     "@vitest/coverage-istanbul": "^1.1.0",
     "jsdom": "^23.0.1",
     "lit": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "stream-dom-renderer": "1.0.0-alpha.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^1.1.0",

@@ -1,8 +1,7 @@
 import { LitElement, PropertyValueMap, css, html } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
-import { StreamDomRenderer } from '../libs/StreamDomRenderer';
-import { DomCommand } from '../libs/Commands/DomCommand';
-import { RichTextCommands } from '../demo/RichTextCommands';
+import { Commands, StreamDomRenderer } from 'stream-dom-renderer';
+import { RichTextCommands } from './demo/RichTextCommands';
 
 /**
  * An example element.
@@ -29,7 +28,7 @@ export class MyElement extends LitElement {
         },
       });
       this.streamRenderer.use({
-        commands: [new DomCommand()],
+        commands: [new Commands.DomCommand()],
         // parsers: [new StandardParser()],
       });
       this.streamRenderer.executeAll(RichTextCommands);

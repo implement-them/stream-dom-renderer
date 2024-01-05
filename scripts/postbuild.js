@@ -12,10 +12,13 @@ const list = [
   'author',
   'main',
   'module',
+  'unpkg',
+  'types',
   'repository',
   'keywords',
   'bugs',
   'license',
+  'dependencies',
   'peerDependencies'
 ];
 
