@@ -1,4 +1,4 @@
-import { IDomCommand } from '../libs/Commands/DomCommand';
+import { IDomCommand } from 'stream-dom-renderer';
 export const RichTextCommands: IDomCommand[] = [
   ['dom.reset', undefined],
   ['dom.create_dom', { tag: 'h1' }],
