@@ -42,11 +42,44 @@ streamRenderer.executeAll([
 
 ## Milestones & TODO list:
 
-- [x] execute basic dom operators
-- [ ] support dom event
-- [x] support 'internal' stream input
-- [ ] support official markdown stream as input (exclude code block)
-- [ ] support a third party syntax tree rule
-- [ ] support one source code highlighting
-- [ ] support custom generated rules
+<style>
+  input[type="checkbox"]:disabled {
+    /* 样式设置 */
+    -webkit-appearance: none;
+    transform: translateY(4px);
+    border: 1px solid #ccc; /* 边框 */
+    width: 1rem; /* 宽度 */
+    height: 1rem; /* 高度 */
+    border-radius: 6px; /* 圆角 */
+    outline: none;
+    background-color: white;
+    /* color: green; */
+  }
+  input[type="checkbox"]:disabled:checked {
+    /* 样式设置 */
+    -webkit-appearance: none;
+    transform: translateY(4px);
+    border: 1px solid #ccc; /* 边框 */
+    width: 1rem; /* 宽度 */
+    height: 1rem; /* 高度 */
+    border-radius: 6px; /* 圆角 */
+    outline: none;
+    background-color: #121212;
+    /* color: green; */
+  }
+</style>
+
+<input type="checkbox" disabled checked> execute basic dom operators
+
+<input type="checkbox" disabled> support dom event
+
+<input type="checkbox" disabled checked> support 'internal' stream input
+
+<input type="checkbox" disabled> support official markdown stream as input (exclude code block)
+
+<input type="checkbox" disabled> support a third party syntax tree rule
+
+<input type="checkbox" disabled> support one source code highlighting
+
+<input type="checkbox" disabled> support custom generated rules
 
