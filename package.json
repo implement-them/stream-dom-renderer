@@ -30,7 +30,8 @@
     "build:umd": "export FORMAT=umd && vite build",
     "build:es": "export FORMAT=es && vite build",
     "build:types": "tsc --noEmit false --declaration --emitDeclarationOnly --outDir dist/types",
-    "publish:alpha": "cd dist && npm publish --tag alpha && cd ..",
+    "publish:alpha": "export TAG=alpha && node ./scripts/updateVersion.js && cd dist && npm publish --tag alpha && cd ..",
+    "publish:beta": "export TAG=beta && node ./scripts/updateVersion.js && cd dist && npm publish --tag beta && cd ..",
     "publish": "cd dist && npm publish && cd ..",
     "start": "vite dev"
   },
