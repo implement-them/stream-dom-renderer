@@ -42,11 +42,11 @@ streamRenderer.executeAll([
 
 ## Milestones & TODO list:
 
-- [x] execute basic dom operators
-- [ ] support dom event
-- [x] support 'internal' stream input
-- [ ] support official markdown stream as input (exclude code block)
-- [ ] support a third party syntax tree rule
-- [ ] support one source code highlighting
-- [ ] support custom generated rules
+- ☑ execute basic dom operators
+- ☒ support dom event
+- ☑ support 'internal' stream input
+- ☒ support official markdown stream as input (exclude code block)
+- ☒ support a third party syntax tree rule
+- ☒ support one source code highlighting
+- ☒ support custom generated rules
 
