@@ -1,7 +1,7 @@
-import './init';
+import '../../init';
 import { describe, it, expect } from 'vitest'
-import { EmptyCommand } from './TestCases/Command/EmptyCommand';
-import { StringCommand } from './TestCases/Command/StringCommand';
+import { EmptyCommand } from '../../TestCases/Command/EmptyCommand';
+import { StringCommand } from '../../TestCases/Command/StringCommand';
 
 describe('SingleCommand', () => {
   it('Write Stream',  async () => {
