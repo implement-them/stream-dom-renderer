@@ -36,7 +36,7 @@ export type IDomCommandPayload<T extends keyof IDomCommands> = IDomCommands[T] &
 
 export class DomCommand extends AbstractCommand {
   public async execute<T extends keyof IDomCommands>(command: T, payload?: IDomCommandPayload<T>) {
-    console.log('dom command', command, payload);
+    // console.log('dom command', command, payload);
     if (!payload || !payload.controller) {
       return;
     }
@@ -45,15 +45,21 @@ export class DomCommand extends AbstractCommand {
         payload.controller.domManager.appendChild((payload as IDomCommandPayload<'dom.append_child'>).node);
         break;
       case 'dom.create_dom':
-        const dom = document.createElement((payload as IDomCommandPayload<'dom.create_dom'>).tag);
-        payload.controller.domManager.appendChild(dom);
-        payload.controller.domManager.forward();
+        const tag = (payload as IDomCommandPayload<'dom.create_dom'>).tag;
+        if (typeof tag === 'string' && !!tag) {
+          const dom = document.createElement(tag);
+          payload.controller.domManager.appendChild(dom);
+          payload.controller.domManager.forward();
+        }
         break;
       case 'dom.create_dom_finished':
         payload.controller.domManager.backward();
         break;
       case 'dom.append_text': 
-        payload.controller.domManager.appendText((payload as IDomCommandPayload<'dom.append_text'>).text);
+        const text = (payload as IDomCommandPayload<'dom.append_text'>).text;
+        if (typeof text === 'string' && !!text) {
+          payload.controller.domManager.appendText(text);
+        }
         break;
       case 'dom.append_attribulte':
         payload.controller.domManager.appendAttribultes((payload as IDomCommandPayload<'dom.append_attribulte'>).values);

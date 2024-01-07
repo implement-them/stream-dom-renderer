@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { StreamManager } from '../libs/Managers/StreamManager';
+import { StreamManager } from '../../../libs/Managers/StreamManager';
 
 
 describe('StreamManager', () => {

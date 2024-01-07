@@ -1,8 +1,8 @@
 import { describe, test, expect, beforeEach } from 'vitest'
-import './init';
-import { DomManager } from '../libs/Managers/DomManager';
+import '../../init';
+import { DomManager } from '../../../libs/Managers/DomManager';
 
-import { appendTextCases } from './TestCases/DomManager/appendText';
+import { appendTextCases } from '../../TestCases/DomManager/appendText';
 
 describe('DOM Manager Unit Test', () => {
   beforeEach(async () => {
