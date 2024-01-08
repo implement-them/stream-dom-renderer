@@ -17,9 +17,7 @@ export { AbstractCommand } from './Commands/AbstractCommand';
 /**
  * Internal Commands
  */
-export { Commands } from './Commands';
-
-export type { IDomCommand } from './Commands/DomCommand';
+export * from './Commands';
 
 /**
  * Internal Parsers
