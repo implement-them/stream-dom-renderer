@@ -1,21 +1,21 @@
-import { AbstractCommand } from './Commands/AbstractCommand';
+import { AbstractReceiver } from './Receivers/AbstractReceiver';
 import { AbstractStreamParser } from './StreamParser/AbstractParser';
 
 /**
  * Plugins of StreamDomRenderer
  * @example
 new StreamDomRenderer().use({
-  commands: [new DomCommand()],
+  reveivers: [new DomReceiver()],
   parsers: [new StandardParser()],
 });
  * @example
 new StreamDomRenderer().use({
-  commands: [new DomCommand()],
+  reveivers: [new DomReceiver()],
 }).use({
   parsers: [new StandardParser()],
 });
  */
 export interface IStreamDomRendererPlugin {
-  commands?: AbstractCommand[];
+  reveivers?: AbstractReceiver[];
   parsers?: AbstractStreamParser[];
 }

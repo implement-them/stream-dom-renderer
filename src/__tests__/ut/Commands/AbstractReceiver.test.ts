@@ -1,12 +1,12 @@
 import '../../init';
 import { describe, it, expect } from 'vitest'
-import { EmptyCommand } from '../../TestCases/Command/EmptyCommand';
-import { StringCommand } from '../../TestCases/Command/StringCommand';
+import { EmptyReceiver } from '../../TestCases/Command/EmptyReceiver';
+import { StringReceiver } from '../../TestCases/Command/StringReceiver';
 
-describe('SingleCommand', () => {
+describe('Single Receiver', () => {
   it('Write Stream',  async () => {
-    const c1 = new EmptyCommand();
-    const c2 = new StringCommand();
+    const c1 = new EmptyReceiver();
+    const c2 = new StringReceiver();
     const cmdList = [c1, c2];
     
     cmdList.forEach(cmd => {

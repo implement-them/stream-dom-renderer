@@ -2,7 +2,7 @@ export interface ICommandPayload {
   [key: string]: any;
 }
 
-export interface ICommand {
+export interface IReceiver {
   /**
    * 
    * @param controller 
@@ -15,7 +15,7 @@ export interface ICommand {
 /**
  * @description abstract class of command
  */
-export abstract class AbstractCommand implements ICommand {
+export abstract class AbstractReceiver implements IReceiver {
   async executeFramework(command: string, payload?: ICommandPayload) {
     await this.execute(command, payload);
     // iterator.next();

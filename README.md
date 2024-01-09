@@ -7,7 +7,7 @@ Read stream input and render them to web page.
 ### operate dom
 
 ````
-import { StreamDomRenderer, IDomCommand } from 'stream-dom-renderer';
+import { StreamDomRenderer, IDomCommand, Receivers } from 'stream-dom-renderer';
 
 const streamRenderer = new StreamDomRenderer({
   dom: {
@@ -16,7 +16,7 @@ const streamRenderer = new StreamDomRenderer({
 });
 
 streamRenderer.use({
-  commands: [new DomCommand()],
+  reveivers: [new Receivers.DomReceiver()],
 });
 
 streamRenderer.executeAll([
@@ -43,11 +43,11 @@ streamRenderer.executeAll([
 
 ### Mock Stream Print
 ````
-// Customize command
-import { Commands, IDomCommandPayload, IDomCommands } from 'stream-dom-renderer';
+// Customize receiver 
+import { Receivers, IDomCommandPayload, IDomCommands } from 'stream-dom-renderer';
 import { sleep } from '../utils/sleep';
 
-export class PrinterCommand extends Commands.DomCommand {
+export class PrinterReciever extends Receivers.DomReceiver {
   public override async execute<T extends keyof IDomCommands>(command: T, payload?: IDomCommandPayload<T>) {
     if (command !== 'dom.append_text') {
       super.execute(command, payload);
@@ -77,7 +77,7 @@ const streamRenderer = new StreamDomRenderer({
 });
 
 streamRenderer.use({
-  commands: [new PrinterCommand()],
+  reveivers: [new PrinterReciever()],
 });
 
 streamRenderer.executeAll([
