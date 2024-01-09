@@ -3109,10 +3109,10 @@ std-env@^3.5.0:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.7.0.tgz#c9f7386ced6ecf13360b6c6c55b8aaa4ef7481d2"
   integrity sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==
 
-stream-dom-renderer@1.0.0-alpha.6:
-  version "1.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/stream-dom-renderer/-/stream-dom-renderer-1.0.0-alpha.6.tgz#4a13ea5a22b0e513d180e594e4387573cf9b09b8"
-  integrity sha512-KbxqV5jQV2TJAo9Xmr/aar/q39Kea5vKhLFXJVQHSM9fbO07GfmFxUX0UgsoqvgmWDzuqc71kZi7lJW7pQ0Vrg==
+stream-dom-renderer@1.0.0-alpha.7:
+  version "1.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/stream-dom-renderer/-/stream-dom-renderer-1.0.0-alpha.7.tgz#8c411084c7b321f5872409e99a3c106daffa93a8"
+  integrity sha512-T70TmpNXhPjDQz/TqeWXqq93aOJL/vHRJtl2lADmY9ZDBbspwVGCnZhuQAJNQkA3KbA6zKHSuF7bEQ4A7BMWwg==
 
 streamx@^2.15.0:
   version "2.15.6"

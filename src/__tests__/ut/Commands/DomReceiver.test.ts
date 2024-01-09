@@ -1,18 +1,18 @@
 import '../../init';
 import { describe, test, expect, beforeEach } from 'vitest'
 import { createStreamRenderer } from '../../utils/createStreamRenderer';
-import { DomCommand } from '../../../libs/Commands/DomCommand';
 import { appendTextCases } from '../../TestCases/DomManager/appendText';
 import { RichTextCommands, RichTextCommandsResult } from '../../TestCases/Command/DomCommandsList';
+import { DomReceiver } from '../../../libs/Receivers/DomReceiver';
 
-describe('DOM Command', () => {
+describe('DomReceiver', () => {
   beforeEach(async () => {
     document.body.innerHTML = '';
   });
-  test('[DOM Command]-Free',  async () => {
+  test('[DomReceiver]-Free',  async () => {
     const renderer = createStreamRenderer().use({
-      commands: [
-        new DomCommand(),
+      reveivers: [
+        new DomReceiver(),
       ],
     });
 
@@ -29,10 +29,10 @@ describe('DOM Command', () => {
     expect(renderer.domManager.currentNode).toEqual(document.body.firstChild);
   });
 
-  test.each(appendTextCases)('[DOM Command]- dom.append_text $input', async ({ input, innerHTML, textContent }) => {
+  test.each(appendTextCases)('[DomReceiver]- dom.append_text $input', async ({ input, innerHTML, textContent }) => {
     const renderer = createStreamRenderer().use({
-      commands: [
-        new DomCommand(),
+      reveivers: [
+        new DomReceiver(),
       ],
     });
     await renderer.execute('dom.append_text', { text: input });
@@ -40,10 +40,10 @@ describe('DOM Command', () => {
     expect(renderer.domManager.currentNode.textContent).toBe(textContent);
   });
 
-  test('[DOM Command]- dom.append_child', () => {
+  test('[DomReceiver]- dom.append_child', () => {
     const renderer = createStreamRenderer().use({
-      commands: [
-        new DomCommand(),
+      reveivers: [
+        new DomReceiver(),
       ],
     });
     renderer.execute('dom.append_child', { node: document.createElement('div') });
@@ -52,10 +52,10 @@ describe('DOM Command', () => {
     expect(renderer.domManager.currentNode.innerHTML).toBe('<div></div><text></text>');
   });
 
-  test('[DOM Command]- dom.forward && dom.backword && dom.reset', () => {
+  test('[DomReceiver]- dom.forward && dom.backword && dom.reset', () => {
     const renderer = createStreamRenderer().use({
-      commands: [
-        new DomCommand(),
+      reveivers: [
+        new DomReceiver(),
       ],
     });
 
@@ -69,20 +69,20 @@ describe('DOM Command', () => {
     expect(renderer.domManager.currentNode.children.length).toBe(0);
   });
 
-  test('[DOM Command]- exec command list', async () => {
+  test('[DomReceiver]- exec command list', async () => {
     const renderer = createStreamRenderer().use({
-      commands: [
-        new DomCommand(),
+      reveivers: [
+        new DomReceiver(),
       ],
     });
     await renderer.executeAll(RichTextCommands);
     expect(renderer.domManager.rootNode.innerHTML).toBe(RichTextCommandsResult);
   });
 
-  test('[DOM Command]- none input', async () => {
-      const cmd = new DomCommand();
+  test('[DomReceiver]- none input', async () => {
+      const cmd = new DomReceiver();
       const renderer = createStreamRenderer().use({
-        commands: [
+        reveivers: [
           cmd,
         ],
       });

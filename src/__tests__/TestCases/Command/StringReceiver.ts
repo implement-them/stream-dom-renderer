@@ -1,6 +1,6 @@
-import { AbstractCommand } from '../../../libs/Commands/AbstractCommand';
+import { AbstractReceiver } from '../../../libs/Receivers/AbstractReceiver';
 
-export class StringCommand extends AbstractCommand {
+export class StringReceiver extends AbstractReceiver {
   str = '';
   execute(command: string, payload?: any) {
     switch (command) {
