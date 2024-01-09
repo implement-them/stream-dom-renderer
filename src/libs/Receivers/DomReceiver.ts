@@ -1,5 +1,5 @@
 import type { StreamDomRenderer } from '../StreamDomRenderer';
-import { AbstractCommand } from './AbstractCommand';
+import { AbstractReceiver } from './AbstractReceiver';
 
 export interface IDomCommands {
   'dom.append_child': {
@@ -34,7 +34,7 @@ export type IDomCommandPayload<T extends keyof IDomCommands> = IDomCommands[T] &
   controller: StreamDomRenderer;
 };
 
-export class DomCommand extends AbstractCommand {
+export class DomReceiver extends AbstractReceiver {
   public async execute<T extends keyof IDomCommands>(command: T, payload?: IDomCommandPayload<T>) {
     // console.log('dom command', command, payload);
     if (!payload || !payload.controller) {

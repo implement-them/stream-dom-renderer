@@ -12,12 +12,12 @@ export { DomManager } from './Managers/DomManager';
 
 export { AbstractStreamParser } from './StreamParser/AbstractParser';
 
-export { AbstractCommand } from './Commands/AbstractCommand';
+export { AbstractReceiver as AbstractCommand } from './Receivers/AbstractReceiver';
 
 /**
- * Internal Commands
+ * Internal Command Reveivers
  */
-export * from './Commands';
+export * from './Receivers';
 
 /**
  * Internal Parsers
