@@ -1,4 +1,5 @@
-import type { IDomCommand } from '../../../libs/Commands/DomCommand';
+import { IDomCommand } from '../../../libs/Receivers/DomReceiver';
+
 export const RichTextCommands: IDomCommand[] = [
   ['dom.reset', undefined],
   ['dom.create_dom', { tag: 'h1' }],
