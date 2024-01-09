@@ -1,7 +1,7 @@
 import { Receivers, IDomCommandPayload, IDomCommands } from 'stream-dom-renderer';
 import { sleep } from '../../utils/sleep';
 
-export class PrinterCommand extends Receivers.DomReceiver {
+export class PrinterReceiver extends Receivers.DomReceiver {
   public override async execute<T extends keyof IDomCommands>(command: T, payload?: IDomCommandPayload<T>) {
     if (command !== 'dom.append_text') {
       super.execute(command, payload);
