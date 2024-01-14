@@ -36,7 +36,6 @@ export class StreamDomRenderer {
       });
       this.streamManager.appendParsed(result.parsedStream);
     }
-
     return this;
   }
 

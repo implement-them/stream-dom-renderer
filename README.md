@@ -6,7 +6,7 @@ Read stream input and render them to web page.
 
 ### operate dom
 
-````
+```` typescript
 import { StreamDomRenderer, IDomCommand, Receivers } from 'stream-dom-renderer';
 
 const streamRenderer = new StreamDomRenderer({
@@ -42,7 +42,7 @@ streamRenderer.executeAll([
 ````
 
 ### Mock Stream Print
-````
+```` typescript
 // Customize receiver 
 import { Receivers, IDomCommandPayload, IDomCommands } from 'stream-dom-renderer';
 import { sleep } from '../utils/sleep';
@@ -114,4 +114,5 @@ streamRenderer.executeAll([
 - ☒ support a third party syntax tree rule
 - ☒ support one source code highlighting
 - ☒ support custom generated rules
+
 

@@ -1,80 +1,5 @@
-import { AbstractStreamParser, IParseResult } from './AbstractParser';
-
-enum State {
-  init = 'init',
-  text = 'text',
-  star1 = 'star1',
-  star2 = 'star2',
-  command = 'command',
-  // error = 'error',
-  starm = 'starm',
-}
-
-const StandardParserTransitionTable: {
-  [key in State]: {
-    '*': State;
-    '.': State;
-  }
-} = {
-  [State.init]: {
-    '*': State.star1,
-    '.': State.text,
-  },
-  [State.text]: {
-    '*': State.star1,
-    '.': State.text,
-  },
-  [State.star1]: {
-    '*': State.star2,
-    '.': State.command,
-  },
-  [State.star2]: {
-    '*': State.starm,
-    '.': State.text,
-  },
-  [State.command]: {
-    '*': State.star1,
-    '.': State.command,
-  },
-  [State.starm]: {
-    '*': State.starm,
-    '.': State.text,
-  },
-};
-
-type IAction = 'append-text' | 'wait' | 'append-command';
-
-const StandardParserTransitionActionTable: {
-  [key in State]: {
-    '*': IAction;
-    '.': IAction;
-  }
-} = {
-  [State.init]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-  [State.text]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-  [State.star1]: {
-    '*': 'wait',
-    '.': 'append-command',
-  },
-  [State.star2]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-  [State.command]: {
-    '*': 'wait',
-    '.': 'append-command',
-  },
-  [State.starm]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-};
+import { AbstractStreamParser, IParseResult } from '../AbstractParser';
+import { IAction, StandardParserTransitionActionTable, StandardParserTransitionTable, State } from './standard.ll1';
 
 /**
  * StandardParser
@@ -88,8 +13,15 @@ const StandardParserTransitionActionTable: {
  * @class StandardParser
  */
 export class StandardParser extends AbstractStreamParser {
-  public override parse(stream: string): IParseResult<[string, string]> {
-    const result: IParseResult<[string, string]> = {
+
+  static key = 'standard';
+
+  public override getKey() {
+    return StandardParser.key;
+  }
+
+  public override parse(stream: string): IParseResult<string> {
+    const result: IParseResult<string> = {
       parsedStream: '',
       commands: [],
     };
@@ -128,6 +60,7 @@ export class StandardParser extends AbstractStreamParser {
         case 'wait': {
           if (state === State.text && waitString) {
             result.commands.push([
+              StandardParser.key,
               currentCommand || 'unknown',
               currentString,
             ]);
@@ -149,6 +82,7 @@ export class StandardParser extends AbstractStreamParser {
 
     if (state === State.text) {
       result.commands.push([
+        StandardParser.key,
         currentCommand || 'unknown',
         currentString,
       ]);
@@ -161,7 +95,10 @@ export class StandardParser extends AbstractStreamParser {
     return result;
   }
 
-  public override domCommandAdapter(cmd: string, text: string): [string, { text: string }] {
-    return ['dom.append_text', { text }];
+  public override domCommandAdapter(scope: string, cmd: string, text: string): [string, { text: string }] {
+    if (scope === StandardParser.key) {
+      return ['dom.append_text', { text }];
+    }
+    return ['dom.idle', { text: '' }];
   }
 }

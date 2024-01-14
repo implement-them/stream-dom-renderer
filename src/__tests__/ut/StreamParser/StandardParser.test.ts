@@ -1,7 +1,7 @@
 
 import { describe, test, expect, beforeEach } from 'vitest'
 import { StandardParserInput } from '../../TestCases/ParserString/StandardInput';
-import { StandardParser } from '../../../libs/StreamParser/StandardParser';
+import { StandardParser } from '../../../libs/StreamParser/StarndardParser';
 
 describe('Standard Parser', () => {
   test.each(StandardParserInput)('Standard Parse should parse [%input]', async ({ input, result }) => {

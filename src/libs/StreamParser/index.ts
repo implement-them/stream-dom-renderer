@@ -1,4 +1,4 @@
-import { StandardParser } from './StandardParser';
+import { StandardParser } from './StarndardParser';
 
 export const Parsers = {
   StandardParser,

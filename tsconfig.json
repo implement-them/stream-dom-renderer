@@ -23,7 +23,7 @@
     // "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src/libs",
+    "src/libs", "src/site/demo/test.ts",
   ],
   "exclude": [
     "src/__tests__"

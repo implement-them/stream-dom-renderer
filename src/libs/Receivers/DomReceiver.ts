@@ -18,6 +18,7 @@ export interface IDomCommands {
   'dom.forward': undefined,
   'dom.backward': undefined,
   'dom.reset': undefined,
+  'dom.idle': undefined,
 };
 
 export type IDomCommandKey = keyof IDomCommands;
@@ -73,6 +74,7 @@ export class DomReceiver extends AbstractReceiver {
       case 'dom.reset':
         payload.controller.domManager.clear();
         break;
+      case 'dom.idle': break;
       default: break; 
     }
   }

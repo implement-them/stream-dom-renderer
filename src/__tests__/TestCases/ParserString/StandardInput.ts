@@ -13,18 +13,18 @@ export const StandardParserInput: Array<{
   input: '**test1*c',
   result: {
     parsedStream: '**test1',
-    commands: [['unknown', 'test1']],
+    commands: [['standard', 'unknown', 'test1']],
   },
 }, {
   input: '*t**c***',
   result: {
     parsedStream: '*t**c',
-    commands: [['t', 'c']],
+    commands: [['standard', 't', 'c']],
   },
 }, {
   input: '*t**c***dd',
   result: {
     parsedStream: '*t**c***dd',
-    commands: [['t', 'c'], ['unknown', 'dd']],
+    commands: [['standard', 't', 'c'], ['standard', 'unknown', 'dd']],
   },
 }];

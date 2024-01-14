@@ -2,6 +2,7 @@ import { LitElement, PropertyValueMap, css, html } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
 import { Receivers, StreamDomRenderer } from 'stream-dom-renderer';
 import { RichTextCommands } from './demo/execDemo/RichTextCommands';
+import { PrinterReceiver } from './demo/Command/PrinterCommand';
 
 /**
  * An example element.
@@ -28,7 +29,7 @@ export class MyElement extends LitElement {
         },
       });
       this.streamRenderer.use({
-        reveivers: [new Receivers.DomReceiver()],
+        reveivers: [new PrinterReceiver()],
       });
       this.streamRenderer.executeAll(RichTextCommands);
       (window as any).controller = this.streamRenderer;
