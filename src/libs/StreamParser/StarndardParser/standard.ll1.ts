@@ -1,75 +1,33 @@
+import { IState, ITranslateRule, StatePausedAction } from '../IState';
+
 export enum State {
   init = 'init',
+  end = 'end',
   text = 'text',
   star1 = 'star1',
   star2 = 'star2',
   command = 'command',
-  // error = 'error',
-  starm = 'starm',
-}
-
-export const StandardParserTransitionTable: {
-  [key in State]: {
-    '*': State;
-    '.': State;
-  }
-} = {
-  [State.init]: {
-    '*': State.star1,
-    '.': State.text,
-  },
-  [State.text]: {
-    '*': State.star1,
-    '.': State.text,
-  },
-  [State.star1]: {
-    '*': State.star2,
-    '.': State.command,
-  },
-  [State.star2]: {
-    '*': State.starm,
-    '.': State.text,
-  },
-  [State.command]: {
-    '*': State.star1,
-    '.': State.command,
-  },
-  [State.starm]: {
-    '*': State.starm,
-    '.': State.text,
-  },
 };
 
-export type IAction = 'append-text' | 'wait' | 'append-command';
+export const StateMap: Array<IState<State>> = [
+  { key: State.init, paused: StatePausedAction.backtrace, init: true },
+  { key: State.text, paused: StatePausedAction.append, leave_action: 'append-text' },
+  { key: State.star1, paused: StatePausedAction.backtrace },
+  { key: State.star2, paused: StatePausedAction.backtrace },
+  { key: State.end, paused: StatePausedAction.append, entry_action: 'end', end: true },
+  { key: State.command, paused: StatePausedAction.backtrace, leave_action: 'append-command' },
+];
 
-export const StandardParserTransitionActionTable: {
-  [key in State]: {
-    '*': IAction;
-    '.': IAction;
-  }
-} = {
-  [State.init]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-  [State.text]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-  [State.star1]: {
-    '*': 'wait',
-    '.': 'append-command',
-  },
-  [State.star2]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-  [State.command]: {
-    '*': 'wait',
-    '.': 'append-command',
-  },
-  [State.starm]: {
-    '*': 'wait',
-    '.': 'append-text',
-  },
-};
+export const StandardRuleList: Array<ITranslateRule<State>> = [
+  { from: State.init, to: State.star1, input: '*' },
+  { from: State.init, to: State.text, fallback: true },
+  { from: State.text, to: State.star1, input: '*' },
+  { from: State.text, to: State.text, fallback: true },
+  { from: State.star1, to: State.star2, input: '*' },
+  { from: State.star1, to: State.command, fallback: true },
+  { from: State.star2, to: State.end, input: '*' },
+  { from: State.star2, to: State.text, fallback: true },
+  { from: State.command, to: State.star1, input: '*' },
+  { from: State.command, to: State.command, fallback: true },
+  { from: State.end, to: State.end, fallback: true, },
+];
