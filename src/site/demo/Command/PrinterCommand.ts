@@ -14,7 +14,7 @@ export class PrinterReceiver extends Receivers.DomReceiver {
       if (typeof text === 'string' && !!text) {
         for (let i = 0; i < text.length ; i++) {
           await payload.controller.domManager.appendText(text[i]);
-          await sleep(200);
+          await sleep(50);
         }
       }
     }

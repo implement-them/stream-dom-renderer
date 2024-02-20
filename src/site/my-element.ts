@@ -1,8 +1,9 @@
 import { LitElement, PropertyValueMap, css, html } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
 import { Receivers, StreamDomRenderer } from 'stream-dom-renderer';
-import { RichTextCommands } from './demo/execDemo/RichTextCommands';
+// import { RichTextCommands } from './demo/execDemo/RichTextCommands';
 import { PrinterReceiver } from './demo/Command/PrinterCommand';
+import { AIChatTextCommandGenerator, inputList } from './demo/execDemo/AIChatTextCommandGenarator';
 
 /**
  * An example element.
@@ -31,13 +32,14 @@ export class MyElement extends LitElement {
       this.streamRenderer.use({
         reveivers: [new PrinterReceiver()],
       });
-      this.streamRenderer.executeAll(RichTextCommands);
+      this.streamRenderer.executeAll(AIChatTextCommandGenerator(inputList));
       (window as any).controller = this.streamRenderer;
     }
   }
 
   render() {
     return html`
+      <link rel ="stylesheet" href="/ai-chat.css" />
       <div>Render</div>
       <div id="renderParent"></div>
     `

@@ -1,0 +1,16 @@
+.single-segment {
+  color: green;
+  display: inline-flex;
+}
+
+.single-param {
+  display: block;
+}
+
+.inline-content {
+  display: inline-block;
+}
+
+.segment-content {
+  display: block;
+}
